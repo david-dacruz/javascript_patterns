@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Singleton pattern</h1>
+    <pre style="font-size:16px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        const Singleton = (function(){
+            
+            let instance
+        
+            function createInstance() {
+               
+                const object = new Object({name: 'Object instance'})
+            
+                return object
+            }
+        
+            return {
+            
+                getInstance: function() {
+            
+                    if(!instance){
+            
+                        instance = createInstance()
+            
+                    }
+            
+                    return instance
+            
+                }
+            
+            }
+        })()
+        
+        const instanceA = Singleton.getInstance()
+        
+        const instanceB = Singleton.getInstance()
+    </pre>
+    <h3>Output</h3>
+    <div class="output" style="font-size:18px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        <p>output</p>
+    </div>
+    <script src="singleton_pattern.js"></script>
+</body>
+</html>

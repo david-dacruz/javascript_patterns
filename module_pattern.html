@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="color:#1A202C; margin: 2rem;">
+    <h1>Javascript patterns</h1>
+    <ul>
+        <li>Basic module pattern and module revealing pattern</li>
+    </ul>
+    <h3>Basic module pattern</h3>
+    <pre style="font-size:16px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        // Basic structure
+
+        (function() {
+
+            // Declare private vars and functions
+
+            return {
+
+                // Declare public vars and functions
+
+            }
+        })()
+    </pre>
+    <pre style="font-size:16px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        // Standart module pattern
+
+        const UICtrl = (function() {
+            
+            let text = 'Hello world'
+
+            const changeText = function() {
+        
+                const element = document.querySelector('.output')
+        
+                element.textContent = text
+            }
+
+            return {
+                
+                callChangeText: function() {
+                    
+                    changeText()
+                    
+                    console.log(text)
+                }
+
+            }
+
+        })();
+
+        // Run the module method 
+
+        UICtrl.callChangeText()
+    </pre>
+    <h3>Output</h3>
+    <div class="output" style="font-size:18px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        <p>output</p>
+    </div>
+    <h3>Revealing module pattern</h3>
+    <pre style="font-size:16px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        // Revealing module pattern
+        
+        const itemCtrl  = (function(){
+           
+            let data = []
+
+            function addItem(item) {
+        
+                data.push(item)
+        
+                console.log('Item added')
+            }
+
+            function getItem(id) {
+        
+                return data.find(item => {
+                    return item.id === id 
+                })
+        
+            }
+
+            return {
+
+                add: addItem,
+                get: getItem
+            
+            }
+        })()
+
+        itemCtrl.add({id: 1, name: 'John'})
+        
+        console.log(itemCtrl.get(1))
+    </pre>
+    <h3>Output</h3>
+    <div class="output2" style="font-size:18px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        <p>output</p>
+    </div>
+    <script src="module_pattern.js"></script>
+</body>
+</html>

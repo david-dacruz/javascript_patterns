@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Factory pattern</h3>
+    <pre style="font-size:16px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+        function MemberFactory() {
+            this.createMember = function(name, type) {
+                let member
+        
+                if(type === 'simple') {
+                    member = new SimpleMembership(name)
+                } else if (tye === 'standart') {
+                    member = new StandartMembership(name)
+                } else if (type === 'super') {
+                    member = new SuperMembership(name)
+                }
+        
+                member.type = type
+        
+                member.define = function() {
+                    console.log(`${this.name} (${this.type}): ${this.cost}`)
+                }
+        
+                return member
+            }
+        }
+        
+        const SimpleMembership = function(name) {
+            this.name = name
+            this.cost = '5$'
+        }
+        
+        const StandartMembership = function(name) {
+            this.name = name
+            this.cost = '10$'
+        }
+        
+        const SuperMembership = function(name) {
+            this.name = name
+            this.cost = '20$'
+        }
+        
+        const members = []
+        
+        const factory = new MemberFactory()
+        
+        members.push(factory.createMember('david', 'simple'))
+        members.push(factory.createMember('david', 'standart'))
+        members.push(factory.createMember('david', 'super'))
+       
+        console.log(members)
+
+        members.forEach(member => {
+            member.define()
+        });
+    </pre>
+
+    <h3>Ouput</h3>
+    <pre style="font-size:16px;background: #1A202C;color:green; font-weight: 900;padding: 1rem;">
+    (3) [SimpleMembership, StandartMembership, SuperMembership]
+        
+        0: SimpleMembership
+            cost: "5$"
+            define: ƒ ()
+            name: "david"
+            type: "simple"
+            __proto__: Object
+        
+        1: StandartMembership
+            cost: "10$"
+            define: ƒ ()
+            name: "david"
+            type: "standart"
+            __proto__: Object
+        
+        2: SuperMembership
+            cost: "20$"
+            define: ƒ ()
+            name: "david"
+            type: "super"
+            __proto__: Object
+            length: 3
+
+        david (simple): 5$
+        david (standart): 10$
+        david (super): 20$
+    </pre>
+
+    <script src="factory_pattern.js"></script>
+</body>
+</html>
